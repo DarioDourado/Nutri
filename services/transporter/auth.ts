@@ -8,11 +8,26 @@ import { User } from "../../types";
 
 const MOCK_DELAY = 1000;
 
+// Mock user for local/testing usage
+export const MOCK_USER: User = {
+  id: 'user-test',
+  name: 'UserTest',
+  email: 'user@test.com',
+  goal: 'maintain',
+  dailyCalorieTarget: 2200,
+  weight: 70,
+  height: 170,
+};
+
 export const authTransporter = {
   async login(email: string, pass: string): Promise<User> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // Simulated validation
+        if (email === 'user@test.com' && pass === 'test') {
+          resolve(MOCK_USER);
+          return;
+        }
+
         if (email.includes('@') && pass.length >= 4) {
           resolve({
             id: Math.random().toString(36).substr(2, 9),

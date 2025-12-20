@@ -12,9 +12,7 @@ const NavigationContext = createContext<NavigationContextType | undefined>(undef
 export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [pathname, setPathname] = useState('/');
 
-  // Map URLs to our Page enum for internal routing
   const push = useCallback((href: string) => {
-    // Normalize href for our internal enum
     setPathname(href);
     window.scrollTo(0, 0);
   }, []);

@@ -10,7 +10,6 @@ export const AuthService = {
   async signIn(email: string, pass: string): Promise<User> {
     try {
       const user = await authTransporter.login(email, pass);
-      // Here we could handle additional logic like setting cookies or analytics
       return user;
     } catch (error) {
       console.error("AuthService SignIn Error:", error);

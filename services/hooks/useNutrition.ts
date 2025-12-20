@@ -8,7 +8,6 @@ export const useNutrition = (user: User | null, lang: Language) => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [aiAdvice, setAiAdvice] = useState('Analisando seu dia...');
 
-  // Load meals from storage
   useEffect(() => {
     const savedMeals = localStorage.getItem('nutriai_meals');
     if (savedMeals) {
@@ -16,7 +15,6 @@ export const useNutrition = (user: User | null, lang: Language) => {
     }
   }, []);
 
-  // Save meals to storage
   useEffect(() => {
     localStorage.setItem('nutriai_meals', JSON.stringify(meals));
   }, [meals]);

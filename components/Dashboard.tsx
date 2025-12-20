@@ -31,7 +31,6 @@ const Dashboard: React.FC<DashboardProps> = ({
   const progressPercent = Math.min(100, Math.round((dailyTotals.calories / user.dailyCalorieTarget) * 100));
 
   useEffect(() => {
-    // Initialize Speech Recognition
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
     if (SpeechRecognition) {
       recognitionRef.current = new SpeechRecognition();
@@ -91,7 +90,7 @@ const Dashboard: React.FC<DashboardProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
       
-      {/* LEFT COLUMN: Overview & Input */}
+      {/* LEFT COLUMN */}
       <div className="lg:col-span-2 space-y-8">
         <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
