@@ -1,0 +1,8 @@
+{
+  "name": "NutriAi - AI Nutritional Assistant",
+  "description": "An intelligent nutritional assistant that uses natural language processing to track meals and help users reach their health goals.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
