@@ -13,6 +13,13 @@ export const translations = {
       logout: 'Sair',
       hello: 'Olá',
     },
+    footer: {
+      rights: 'Todos os direitos reservados.',
+      support: 'Suporte',
+      legal: 'Legal',
+      privacy: 'Privacidade',
+      terms: 'Termos de Uso'
+    },
     hero: {
       title: 'Sua jornada para uma vida mais {span} começa com IA.',
       span: 'saudável',
@@ -100,6 +107,13 @@ export const translations = {
       login: 'Login',
       logout: 'Logout',
       hello: 'Hello',
+    },
+    footer: {
+      rights: 'All rights reserved.',
+      support: 'Support',
+      legal: 'Legal',
+      privacy: 'Privacy Policy',
+      terms: 'Terms of Use'
     },
     hero: {
       title: 'Your journey to a {span} life starts with AI.',

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import HomePage from './app/page';
 import LoginPage from './app/login/page';
 import DashboardPage from './app/dashboard/page';
@@ -34,8 +35,16 @@ const AppContent: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin-slow h-12 w-12 border-4 border-emerald-500 border-t-transparent rounded-full"></div>
+      <div className="min-h-screen flex items-center justify-center bg-white">
+        <div className="flex flex-col items-center">
+          <div className="relative">
+             <div className="h-16 w-16 bg-emerald-500 rounded-2xl animate-spin-slow"></div>
+             <div className="absolute inset-0 flex items-center justify-center">
+               <div className="h-8 w-8 bg-white rounded-full"></div>
+             </div>
+          </div>
+          <p className="mt-6 text-slate-400 font-bold uppercase tracking-widest text-xs animate-pulse">Carregando NutriAi...</p>
+        </div>
       </div>
     );
   }
@@ -67,8 +76,17 @@ const AppContent: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <Navbar user={user} onLogout={logout} lang={lang} onLangChange={changeLanguage} t={t} />
-      <main className="flex-grow">{renderPage()}</main>
+      <Navbar 
+        user={user} 
+        onLogout={logout} 
+        lang={lang} 
+        onLangChange={changeLanguage} 
+        t={t} 
+      />
+      <main className="flex-grow">
+        {renderPage()}
+      </main>
+      <Footer t={t} />
     </div>
   );
 };
