@@ -1,10 +1,11 @@
 
-import { User } from "../../types";
 
 /**
  * Auth Transporter
  * Simulates network requests to an authentication provider (e.g., Firebase, Auth0, or custom API).
  */
+
+import { User } from "@/types/user";
 
 const MOCK_DELAY = 1000;
 

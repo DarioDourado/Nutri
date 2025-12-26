@@ -1,12 +1,6 @@
 
+import { ProfileProps } from '@/types/profile';
 import React from 'react';
-import { User } from '../types';
-
-interface ProfileProps {
-  user: User;
-  onUpdateUser: (user: User) => void;
-  t: any;
-}
 
 const Profile: React.FC<ProfileProps> = ({ user, onUpdateUser, t }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {

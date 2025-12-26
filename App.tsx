@@ -8,7 +8,6 @@ import DashboardPage from './app/dashboard/page';
 import ProfilePage from './app/profile/page';
 import PlansPage from './app/plans/page';
 import ContactPage from './app/contact/page';
-import { Page } from './types';
 import { useAuth } from './services/hooks/useAuth';
 import { useNutrition } from './services/hooks/useNutrition';
 import { useTranslation } from './services/hooks/useTranslation';

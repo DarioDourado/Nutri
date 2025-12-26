@@ -1,6 +1,6 @@
 
+import { Page } from '@/types/page';
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import { Page } from '../types';
 
 interface NavigationContextType {
   pathname: string;

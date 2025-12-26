@@ -1,7 +1,8 @@
 
 import { Type } from "@google/genai";
-import { Nutrients, Language } from "../types";
 import { transporter } from "./transporter/client";
+import { Nutrients } from "@/types/nutrients";
+import { Language } from "@/types/language";
 
 export const analyzeMeal = async (mealDescription: string): Promise<Nutrients> => {
   const prompt = `Analyze this meal description and provide estimated calories and macronutrients (protein, carbs, fat in grams). 

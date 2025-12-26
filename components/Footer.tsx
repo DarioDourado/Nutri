@@ -1,12 +1,12 @@
-
 import React from 'react';
 import { Link } from '../services/navigation';
+import { FooterProps } from '@/types/footer';
 
-interface FooterProps {
-  t: any;
-}
 
 const Footer: React.FC<FooterProps> = ({ t }) => {
+  const social = t?.contact?.social;
+  const copyrightTemplate = t?.footer?.copyright;
+
   return (
     <footer className="bg-slate-950 text-slate-400 py-16 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,10 +19,10 @@ const Footer: React.FC<FooterProps> = ({ t }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <span className="text-2xl font-black text-white tracking-tighter">NutriAi</span>
+              <span className="text-2xl font-black text-white tracking-tighter">{t.footer.brand}</span>
             </Link>
             <p className="text-sm leading-relaxed text-slate-500 font-medium">
-              Transformando a nutrição através da inteligência artificial e linguagem natural. O seu corpo, os seus objetivos, a nossa tecnologia.
+              {t.footer.description}
             </p>
           </div>
 
@@ -39,9 +39,9 @@ const Footer: React.FC<FooterProps> = ({ t }) => {
           <div>
             <h4 className="text-white font-black text-xs uppercase tracking-[0.2em] mb-6">{t.footer.support}</h4>
             <ul className="space-y-4 text-sm font-bold">
-              <li><Link href="/contact" className="hover:text-emerald-500 transition-colors">{t.nav.contacts}</Link></li>
-              <li><a href="#" className="hover:text-emerald-500 transition-colors">FAQ</a></li>
-              <li><a href="#" className="hover:text-emerald-500 transition-colors">Blog Nutrição</a></li>
+              <li><Link href="/contact" className="hover:text-emerald-500 transition-colors">{t.nav.contact}</Link></li>
+              <li><a href="#" className="hover:text-emerald-500 transition-colors">{t.footer.faq}</a></li>
+              <li><a href="#" className="hover:text-emerald-500 transition-colors">{t.footer.blog}</a></li>
             </ul>
           </div>
 
@@ -50,18 +50,20 @@ const Footer: React.FC<FooterProps> = ({ t }) => {
             <ul className="space-y-4 text-sm font-bold">
               <li><a href="#" className="hover:text-emerald-500 transition-colors">{t.footer.privacy}</a></li>
               <li><a href="#" className="hover:text-emerald-500 transition-colors">{t.footer.terms}</a></li>
-              <li><a href="#" className="hover:text-emerald-500 transition-colors">Cookies</a></li>
+              <li><a href="#" className="hover:text-emerald-500 transition-colors">{t.footer.cookies}</a></li>
             </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0 text-xs font-bold uppercase tracking-widest text-slate-600">
-          <p>© 2024 NutriAi Inc. {t.footer.rights}</p>
+          {copyrightTemplate && (
+            <p>{copyrightTemplate.replace('{{year}}', String(new Date().getFullYear()))}</p>
+          )}
           <div className="flex space-x-6">
-            <a href="#" className="hover:text-white transition-colors">Twitter</a>
-            <a href="#" className="hover:text-white transition-colors">Instagram</a>
-            <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
+            {social?.twitter && <a href="#" className="hover:text-white transition-colors">{social.twitter}</a>}
+            {social?.instagram && <a href="#" className="hover:text-white transition-colors">{social.instagram}</a>}
+            {social?.linkedin && <a href="#" className="hover:text-white transition-colors">{social.linkedin}</a>}
           </div>
         </div>
       </div>

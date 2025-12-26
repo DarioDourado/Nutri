@@ -1,18 +1,13 @@
-
 import React from 'react';
-import { Page, User, Language } from '../types';
-import { Link, usePathname } from '../services/navigation';
+import { usePathname, Link } from '@/services/navigation';
+import { NavbarProps } from '@/types/navbar';
 
-interface NavbarProps {
-  user: User | null;
-  onLogout: () => void;
-  lang: Language;
-  onLangChange: (lang: Language) => void;
-  t: any;
-}
 
 const Navbar: React.FC<NavbarProps> = ({ user, onLogout, lang, onLangChange, t }) => {
   const pathname = usePathname();
+
+  const langLabels = (t && t.lang) ? t.lang : { pt: 'PT', en: 'EN' };
+  const transl = t ?? {};
 
   return (
     <nav className="sticky top-0 z-50 w-full glass border-b border-slate-200">
@@ -28,7 +23,7 @@ const Navbar: React.FC<NavbarProps> = ({ user, onLogout, lang, onLangChange, t }
               </svg>
             </div>
             <span className="text-2xl font-black bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent tracking-tighter">
-              NutriAi
+              {t.brand}
             </span>
           </Link>
 
@@ -68,13 +63,13 @@ const Navbar: React.FC<NavbarProps> = ({ user, onLogout, lang, onLangChange, t }
                 onClick={() => onLangChange('pt')}
                 className={`px-3 py-1.5 text-xs font-black rounded-lg transition-all ${lang === 'pt' ? 'bg-white shadow-sm text-emerald-600' : 'text-slate-400 hover:text-slate-600'}`}
               >
-                PT
+                {langLabels.pt}
               </button>
               <button 
                 onClick={() => onLangChange('en')}
                 className={`px-3 py-1.5 text-xs font-black rounded-lg transition-all ${lang === 'en' ? 'bg-white shadow-sm text-emerald-600' : 'text-slate-400 hover:text-slate-600'}`}
               >
-                EN
+                {langLabels.en}
               </button>
             </div>
             

@@ -1,7 +1,6 @@
 
+import { User } from "@/types/user";
 import { authTransporter } from "./transporter/auth";
-import { User } from "../types";
-
 /**
  * AuthService
  * Higher-level service for handling authentication business logic.

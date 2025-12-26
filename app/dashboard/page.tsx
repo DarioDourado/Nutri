@@ -1,18 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Meal, User, Nutrients, Language } from '../../types';
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, Tooltip } from 'recharts';
 
-interface DashboardPageProps {
-  user: User;
-  todayMeals: Meal[];
-  dailyTotals: Nutrients;
-  isAnalyzing: boolean;
-  aiAdvice: string;
-  onLogMeal: (desc: string) => Promise<any>;
-  lang: Language;
-  t: any;
-}
 
 export default function DashboardPage({ 
   user, todayMeals, dailyTotals, isAnalyzing, aiAdvice, onLogMeal, lang, t

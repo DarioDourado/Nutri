@@ -1,14 +1,9 @@
 
+import { ProfileProps } from '@/types/profile';
 import React from 'react';
-import { User } from '../../types';
 
-interface ProfilePageProps {
-  user: User;
-  onUpdateUser: (user: User) => void;
-  t: any;
-}
 
-export default function ProfilePage({ user, onUpdateUser, t }: ProfilePageProps) {
+export default function ProfilePage({ user, onUpdateUser, t }: ProfileProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     onUpdateUser({

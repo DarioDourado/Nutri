@@ -1,13 +1,7 @@
 
 import React from 'react';
-import { Link } from '../../services/navigation';
+import { LoginPageProps } from '@/types/login';
 
-interface LoginPageProps {
-  login: (email: string, pass: string) => void;
-  isAuthenticating: boolean;
-  authError: string | null;
-  t: any;
-}
 
 export default function LoginPage({ login, isAuthenticating, authError, t }: LoginPageProps) {
   return (

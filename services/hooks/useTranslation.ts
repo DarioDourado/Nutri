@@ -1,24 +1,35 @@
+import { useState, useEffect } from 'react';
+import ptTranslations from '../../locales/pt.json';
+import enTranslations from '../../locales/en.json';
 
-import { useState, useEffect, useCallback } from 'react';
-import { Language } from '../../types';
-import { translations } from '../translations';
+type Lang = 'pt' | 'en';
+
+interface Translations {
+  [key: string]: any;
+}
+
+const translations: Record<Lang, Translations> = {
+  pt: ptTranslations,
+  en: enTranslations
+};
 
 export const useTranslation = () => {
-  const [lang, setLang] = useState<Language>('pt');
+  const [lang, setLang] = useState<Lang>(() => {
+    const stored = localStorage.getItem('lang');
+    return (stored === 'pt' || stored === 'en') ? stored : 'pt';
+  });
 
   useEffect(() => {
-    const savedLang = localStorage.getItem('nutriai_lang') as Language;
-    if (savedLang && (savedLang === 'pt' || savedLang === 'en')) {
-      setLang(savedLang);
-    }
-  }, []);
+    localStorage.setItem('lang', lang);
+  }, [lang]);
 
-  const changeLanguage = useCallback((newLang: Language) => {
+  const changeLanguage = (newLang: Lang) => {
     setLang(newLang);
-    localStorage.setItem('nutriai_lang', newLang);
-  }, []);
+  };
 
-  const t = translations[lang];
-
-  return { lang, changeLanguage, t };
+  return {
+    lang,
+    changeLanguage,
+    t: translations[lang]
+  };
 };
