@@ -1,0 +1,16 @@
+[
+  {
+    "id": "m1",
+    "description": "200g grilled chicken with brown rice and salad",
+    "timestamp": 0,
+    "nutrients": { "calories": 520, "protein": 45, "carbs": 55, "fat": 12 },
+    "type": "lunch"
+  },
+  {
+    "id": "m2",
+    "description": "3-egg omelette with cheese and whole-wheat toast",
+    "timestamp": 0,
+    "nutrients": { "calories": 420, "protein": 28, "carbs": 30, "fat": 22 },
+    "type": "breakfast"
+  }
+]

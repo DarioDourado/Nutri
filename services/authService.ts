@@ -1,0 +1,37 @@
+
+import { User } from "@/types/user";
+import { authTransporter } from "./transporter/auth";
+/**
+ * AuthService
+ * Higher-level service for handling authentication business logic.
+ */
+export const AuthService = {
+  async signIn(email: string, pass: string): Promise<User> {
+    try {
+      const user = await authTransporter.login(email, pass);
+      return user;
+    } catch (error) {
+      console.error("AuthService SignIn Error:", error);
+      throw error;
+    }
+  },
+
+  async signUp(userData: Partial<User>, pass: string): Promise<User> {
+    try {
+      return await authTransporter.register(userData, pass);
+    } catch (error) {
+      console.error("AuthService SignUp Error:", error);
+      throw error;
+    }
+  },
+
+  async signOut(): Promise<void> {
+    try {
+      await authTransporter.logout();
+      localStorage.removeItem('nutriai_user');
+    } catch (error) {
+      console.error("AuthService SignOut Error:", error);
+      throw error;
+    }
+  }
+};

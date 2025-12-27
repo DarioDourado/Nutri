@@ -1,0 +1,166 @@
+{
+  "brand": "NutriAi",
+  "lang": {
+    "pt": "PT",
+    "en": "EN"
+  },
+  "nav": {
+    "home": "Início",
+    "dashboard": "Dashboard",
+    "profile": "Perfil",
+    "plans": "Planos",
+    "contact": "Contacto",
+    "contacts": "Contacto",
+    "login": "Entrar",
+    "logout": "Sair",
+    "hello": "Olá"
+  },
+  "footer": {
+    "rights": "Todos os direitos reservados.",
+    "support": "Suporte",
+    "legal": "Legal",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Utilização",
+    "brand": "NutriAi",
+    "description": "Transforme a sua alimentação com inteligência artificial. Análise nutricional instantânea e personalizada.",
+    "faq": "FAQ",
+    "blog": "Blog Nutrição",
+    "cookies": "Política de Cookies",
+    "copyright": "© {{year}} NutriAi · Todos os direitos reservados.",
+    "features": [
+      "Planos personalizados",
+      "Análise em tempo real",
+      "Registo por voz"
+    ]
+  },
+  "hero": {
+    "title": "A sua jornada para uma vida {{span}} começa com IA.",
+    "span": "mais saudável",
+    "subtitle": "NutriAi transforma a forma como regista a sua alimentação. Use linguagem natural para registar as suas refeições e deixe a nossa IA tratar dos detalhes nutricionais.",
+    "cta": "Comece grátis agora",
+    "howItWorks": "Veja como funciona",
+    "badge": "Nutrição por IA",
+    "stats": {
+      "users": "100k+",
+      "usersLabel": "Utilizadores",
+      "records": "1M+",
+      "recordsLabel": "Refeições analisadas",
+      "rating": "4.9",
+      "ratingLabel": "Avaliação média"
+    },
+    "widget": {
+      "label": "Análise Instantânea",
+      "value": "Macros & kcal"
+    }
+  },
+  "features": {
+    "naturalLanguage": "Linguagem Natural",
+    "naturalLanguageDesc": "\"Comi uma omelete de 3 ovos com queijo e tosta integral\" — é tudo o que precisa dizer.",
+    "dashboard": "Painel Inteligente",
+    "dashboardDesc": "Acompanhe calorias, macros e progresso diário em tempo real com gráficos intuitivos.",
+    "plans": "Planos Nutricionais",
+    "plansDesc": "Receba recomendações personalizadas com base no seu perfil, peso e objetivos."
+  },
+  "howItWorks": {
+    "title": "Tão simples quanto uma conversa",
+    "step1": "Ativar Microfone",
+    "step1Desc": "Clique no ícone de voz no seu dashboard.",
+    "step2": "Descrever Refeição",
+    "step2Desc": "Fale naturalmente sobre o que comeu e as quantidades.",
+    "step3": "Obter Análise",
+    "step3Desc": "A nossa IA calcula macros e calorias instantaneamente."
+  },
+  "testimonials": {
+    "title": "O que os nossos utilizadores dizem",
+    "user1": {
+      "quote": "O NutriAi mudou a minha rotina. Registar refeições já não é uma tarefa aborrecida.",
+      "name": "Alice Silva",
+      "role": "Entusiasta de Fitness"
+    },
+    "user2": {
+      "quote": "A precisão da IA é impressionante. Finalmente percebo os meus macros.",
+      "name": "João Silva",
+      "role": "Treinador"
+    }
+  },
+  "dashboard": {
+    "welcome": "Bom dia",
+    "progress": "Acompanhe o seu progresso diário",
+    "dailyMeta": "Meta diária",
+    "addMeal": "Adicionar Refeição com IA",
+    "inputPlaceholder": "Ex: Comi 200g de frango grelhado com arroz integral e salada...",
+    "activateMic": "Ativar microfone",
+    "listening": "A ouvir...",
+    "tip": "💡 Experimente por voz!",
+    "register": "Registar",
+    "analyzing": "A analisar...",
+    "speechError": "O seu navegador não suporta reconhecimento de voz.",
+    "error": "Erro ao registar a refeição. Por favor tente novamente.",
+    "todayMeals": "Refeições de hoje",
+    "records": "registos",
+    "noMeals": "🍽️ Ainda não há refeições registadas hoje. Comece já!",
+    "macros": "Distribuição de Macros",
+    "protein": "Proteína",
+    "carbs": "Hidratos",
+    "fat": "Gordura",
+    "proteinShort": "Prot",
+    "carbsShort": "Hidr",
+    "fatShort": "Gord",
+    "insight": "Insight da IA",
+    "weeklyTrend": "Tendência Semanal"
+  },
+  "login": {
+    "welcome": "Bem-vindo de volta!",
+    "subtitle": "Inicie sessão para continuar a sua jornada.",
+    "email": "Email",
+    "password": "Palavra-passe",
+    "entering": "A iniciar sessão...",
+    "enter": "Entrar",
+    "noAccount": "Não tem conta?",
+    "createAccount": "Crie uma agora",
+    "authError": "Credenciais inválidas ou erro no servidor."
+  },
+  "profile": {
+    "title": "Perfil de Utilizador",
+    "subtitle": "Personalize os seus dados para cálculos nutricionais precisos.",
+    "name": "Nome completo",
+    "email": "Email",
+    "weight": "Peso (kg)",
+    "height": "Altura (cm)",
+    "goal": "Objetivo principal",
+    "calories": "Meta calórica diária",
+    "lose": "Perder peso",
+    "maintain": "Manter peso",
+    "gain": "Ganho de massa muscular",
+    "save": "Guardar Alterações"
+  },
+  "plans": {
+    "title": "Os Seus Planos Nutricionais",
+    "subtitle": "Escolha um plano adaptado aos seus objetivos.",
+    "kcalUnit": "kcal",
+    "activate": "Ativar",
+    "cards": {
+      "bulkClean": {
+        "title": "Bulk & Clean",
+        "desc": "Plano de superávit calórico focado em ganho de massa com escolhas alimentares limpas."
+      },
+      "cuttingExpress": {
+        "title": "Cutting Express",
+        "desc": "Plano hipocalórico focado na perda de gordura preservando músculo."
+      },
+      "maintenance": {
+        "title": "Manutenção",
+        "desc": "Plano equilibrado para manter o seu peso e desempenho."
+      }
+    }
+  },
+  "contact": {
+    "title": "Entre em Contacto",
+    "social": {
+      "twitter": "Twitter",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    }
+  }
+}
