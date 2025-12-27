@@ -5,8 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:api": "cd api && npm run dev",
+    "dev:all": "npm run dev & npm run dev:api",
     "build": "vite build",
-    "preview": "vite preview"
+    "build:api": "cd api && npm run build",
+    "build:all": "npm run build && npm run build:api",
+    "preview": "vite preview",
+    "install:api": "cd api && npm install",
+    "install:all": "npm install && npm run install:api"
   },
   "dependencies": {
     "@google/genai": "^1.34.0",

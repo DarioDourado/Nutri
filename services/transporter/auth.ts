@@ -1,71 +1,129 @@
 
-
 /**
  * Auth Transporter
- * Simulates network requests to an authentication provider (e.g., Firebase, Auth0, or custom API).
+ * Connects to the Nutri API for authentication using Firebase
  */
 
 import { User } from "@/types/user";
 
-const MOCK_DELAY = 1000;
+const API_URL = (import.meta as any).env.VITE_API_URL;
 
-// Mock user for local/testing usage
-export const MOCK_USER: User = {
-  id: 'user-test',
-  name: 'UserTest',
-  email: 'user@test.com',
-  goal: 'maintain',
-  dailyCalorieTarget: 2200,
-  weight: 70,
-  height: 170,
+// Storage keys
+const TOKEN_KEY = 'nutri_auth_token';
+const USER_KEY = 'nutri_user';
+
+// Helper functions for token management
+const saveToken = (token: string) => {
+  localStorage.setItem(TOKEN_KEY, token);
+};
+
+const getToken = (): string | null => {
+  return localStorage.getItem(TOKEN_KEY);
+};
+
+const removeToken = () => {
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USER_KEY);
+};
+
+const saveUser = (user: User) => {
+  localStorage.setItem(USER_KEY, JSON.stringify(user));
 };
 
 export const authTransporter = {
-  async login(email: string, pass: string): Promise<User> {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (email === 'user@test.com' && pass === 'test') {
-          resolve(MOCK_USER);
-          return;
-        }
+  async login(email: string, password: string): Promise<User> {
+    try {
+      const response = await fetch(`${API_URL}/api/auth/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-        if (email.includes('@') && pass.length >= 4) {
-          resolve({
-            id: Math.random().toString(36).substr(2, 9),
-            name: email.split('@')[0].charAt(0).toUpperCase() + email.split('@')[0].slice(1),
-            email: email,
-            goal: 'maintain',
-            dailyCalorieTarget: 2200,
-            weight: 75,
-            height: 180,
-          });
-        } else {
-          reject(new Error("Credenciais inválidas. Verifique o seu email e palavra-passe."));
-        }
-      }, MOCK_DELAY);
-    });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Credenciais inválidas. Verifique o seu email e palavra-passe.');
+      }
+
+      const data = await response.json();
+      
+      // Save token and user data
+      saveToken(data.token);
+      saveUser(data.user);
+      
+      return data.user;
+    } catch (error: any) {
+      console.error('Login error:', error);
+      throw new Error(error.message || 'Erro ao fazer login. Tente novamente.');
+    }
   },
 
-  async register(userData: Partial<User>, pass: string): Promise<User> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          id: Math.random().toString(36).substr(2, 9),
-          name: userData.name || 'Novo Utilizador',
-          email: userData.email || '',
-          goal: 'maintain',
-          dailyCalorieTarget: 2000,
-          weight: 70,
-          height: 170,
-          ...userData
-        } as User);
-      }, MOCK_DELAY);
-    });
+  async register(userData: Partial<User>, password: string): Promise<User> {
+    try {
+      const response = await fetch(`${API_URL}/api/auth/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userData.email,
+          password,
+          name: userData.name,
+          goal: userData.goal || 'maintain',
+          weight: userData.weight,
+          height: userData.height,
+        }),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || 'Erro ao registrar. Tente novamente.');
+      }
+
+      const data = await response.json();
+      
+      // Save token and user data
+      saveToken(data.token);
+      saveUser(data.user);
+      
+      return data.user;
+    } catch (error: any) {
+      console.error('Register error:', error);
+      throw new Error(error.message || 'Erro ao registrar. Tente novamente.');
+    }
   },
 
   async logout(): Promise<void> {
-    return new Promise((resolve) => {
-      setTimeout(resolve, 500);
-    });
-  }
+    try {
+      // Remove local storage data
+      removeToken();
+      return Promise.resolve();
+    } catch (error) {
+      console.error('Logout error:', error);
+      throw new Error('Erro ao fazer logout.');
+    }
+  },
+
+  // Get current token
+  getAuthToken(): string | null {
+    return getToken();
+  },
+
+  // Check if user is authenticated
+  isAuthenticated(): boolean {
+    return !!getToken();
+  },
+
+  // Get stored user data
+  getStoredUser(): User | null {
+    const userStr = localStorage.getItem(USER_KEY);
+    if (!userStr) return null;
+    try {
+      return JSON.parse(userStr);
+    } catch {
+      return null;
+    }
+  },
 };
+
