@@ -1,22 +1,7 @@
-import { GoogleGenAI } from "@google/genai";
-
 /**
- * Transporter Client
- * Responsible for bootstrapping the AI SDK and providing a consistent interface
- * for network-like operations.
+ * Client-side transporter
+ * Now proxies requests to a server-side endpoint at `/api/analyze`.
  */
-
-const getAIClient = () => {
-  const apiKey = (import.meta as any).env?.VITE_API_KEY || "";
-  if (!apiKey) {
-    console.error("VITE_API_KEY not found in environment. Check .env file and restart dev server.");
-    throw new Error("API key is missing. Please provide a valid API key.");
-  }
-  console.debug('[transporter/client] API_KEY loaded:', apiKey.slice(0, 8) + '***');
-  return new GoogleGenAI({ apiKey });
-};
-
-export const aiClient = getAIClient();
 
 export const transporter = {
   async post(model: string, input: any, opts?: any) {
@@ -26,12 +11,20 @@ export const transporter = {
     }
 
     try {
-      const response = await aiClient.models.generateContent({
-        model,
-        contents: input,
-        config: opts,
+      const res = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model, input, opts }),
       });
-      return response;
+
+      if (!res.ok) {
+        const text = await res.text();
+        console.error('[transporter.post] server error:', res.status, text);
+        throw new Error(`Server error: ${res.status}`);
+      }
+
+      const data = await res.json();
+      return data;
     } catch (err) {
       console.error('[transporter.post] request error:', err);
       throw err;
