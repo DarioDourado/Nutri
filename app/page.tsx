@@ -1,10 +1,28 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from '../services/navigation';
+import { HomePageProps } from '@/types/home';
 
-interface HomePageProps {
-  t: any;
-}
+// SEO metadata for the public homepage
+export const metadata = {
+  title: 'Nutri — Alimentação Inteligente',
+  description: 'Nutri ajuda a registar refeições, acompanhar macronutrientes e alcançar objetivos com recomendações inteligentes.',
+  keywords: ['nutri', 'nutrição', 'refeições', 'calorias', 'macronutrientes', 'IA', 'plano alimentar'],
+  robots: { index: true, follow: true },
+  openGraph: {
+    title: 'Nutri — Alimentação Inteligente',
+    description: 'Regista refeições, acompanha macros e recebe recomendações personalizadas com IA.',
+    url: 'https://example.com',
+    siteName: 'Nutri'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nutri — Alimentação Inteligente',
+    description: 'Regista refeições e alcança os teus objetivos com recomendações baseadas em IA.'
+  },
+  alternates: { canonical: 'https://example.com' }
+};
+
 
 const carouselSlides = [
   { image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=1200", label: "Fresh & Healthy", context: "Salads & Bowls" },
@@ -26,12 +44,12 @@ export default function HomePage({ t }: HomePageProps) {
   }, []);
 
   return (
-    <div className="flex flex-col bg-white overflow-x-hidden">
+    <div role="main" aria-labelledby="home-heading" className="flex flex-col bg-white overflow-x-hidden">
       <section className="relative min-h-[95vh] flex items-center pt-10 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-left animate-fade-in-up">
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-slate-900 mb-8 leading-[0.95]">
+              <h1 id="home-heading" className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-slate-900 mb-8 leading-[0.95]">
                 {t.hero.title.split('{span}')[0]}
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-400">{t.hero.span}</span>
                 {t.hero.title.split('{span}')[1]}
@@ -56,6 +74,47 @@ export default function HomePage({ t }: HomePageProps) {
           </div>
         </div>
       </section>
+
+      {/* JSON-LD structured data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "WebSite",
+              "@id": "https://example.com/#website",
+              "url": "https://example.com",
+              "name": "Nutri",
+              "description": "Regista refeições, acompanha macros e recebe recomendações personalizadas com IA.",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://example.com/?s={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            },
+            {
+              "@type": "Organization",
+              "@id": "https://example.com/#organization",
+              "name": "Nutri",
+              "url": "https://example.com",
+              "contactPoint": [{
+                "@type": "ContactPoint",
+                "email": "suporte@nutriai.pt",
+                "contactType": "customer support",
+                "availableLanguage": ["Portuguese", "English"]
+              }]
+            },
+            {
+              "@type": "WebPage",
+              "@id": "https://example.com/#webpage",
+              "url": "https://example.com",
+              "name": "Nutri — Alimentação Inteligente",
+              "isPartOf": { "@id": "https://example.com/#website" }
+            }
+          ]
+        }) }}
+      />
     </div>
   );
 }

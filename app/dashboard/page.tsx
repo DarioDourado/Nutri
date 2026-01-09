@@ -1,5 +1,25 @@
 
 import React, { useState, useEffect, useRef } from 'react';
+
+// SEO metadata for this (authenticated) dashboard page.
+
+export const metadata = {
+  title: 'Dashboard — Nutri',
+  description: 'Painel do utilizador para registar refeições, acompanhar macronutrientes e obter recomendações.',
+  keywords: ['nutri','dashboard','refeições','calorias','macronutrientes'],
+  robots: { index: false, follow: false },
+  openGraph: {
+    title: 'Dashboard — Nutri',
+    description: 'Acompanhe suas refeições e macros no painel pessoal da Nutri.',
+    url: 'https://example.com/dashboard',
+    siteName: 'Nutri',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Dashboard — Nutri',
+    description: 'Painel pessoal para registo de refeições e análise de nutrientes.'
+  }
+};
 import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, Tooltip } from 'recharts';
 
 
@@ -45,12 +65,12 @@ export default function DashboardPage({
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in">
+    <div role="main" aria-labelledby="dashboard-heading" className="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-3 gap-8 animate-fade-in">
       <div className="lg:col-span-2 space-y-8">
         <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
             <div>
-              <h1 className="text-3xl font-bold text-slate-900 mb-2">{t.dashboard.welcome}, {user.name}!</h1>
+              <h1 id="dashboard-heading" className="text-3xl font-bold text-slate-900 mb-2">{t.dashboard.welcome}, {user.name}!</h1>
               <p className="text-slate-500">{t.dashboard.progress}</p>
             </div>
             <div className="bg-emerald-50 px-6 py-4 rounded-2xl flex items-center border border-emerald-100">
@@ -138,6 +158,18 @@ export default function DashboardPage({
           <p className="text-lg leading-relaxed italic">"{aiAdvice}"</p>
         </div>
       </div>
+
+      {/* JSON-LD structured data (kept minimal because dashboard is private) */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Dashboard — Nutri",
+          "description": "Painel do utilizador para registar e acompanhar refeições.",
+          "isAccessibleForFree": false
+        }) }}
+      />
     </div>
   );
 }

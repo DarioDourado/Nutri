@@ -1,9 +1,7 @@
 
+import { ContactPageProps } from '@/types/contacts';
 import React from 'react';
 
-interface ContactPageProps {
-  t: any;
-}
 
 export default function ContactPage({ t }: ContactPageProps) {
   return (
