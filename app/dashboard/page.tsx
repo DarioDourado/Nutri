@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 
-// SEO metadata for this (authenticated) dashboard page.
 
 export const metadata = {
   title: 'Dashboard — Nutri',

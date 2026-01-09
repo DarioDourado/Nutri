@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from '../services/navigation';
 import { HomePageProps } from '@/types/home';
+import { homeJsonLd } from './seo/homeSeo';
 
-// SEO metadata for the public homepage
 export const metadata = {
   title: 'Nutri — Alimentação Inteligente',
   description: 'Nutri ajuda a registar refeições, acompanhar macronutrientes e alcançar objetivos com recomendações inteligentes.',
@@ -75,45 +75,9 @@ export default function HomePage({ t }: HomePageProps) {
         </div>
       </section>
 
-      {/* JSON-LD structured data for SEO */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org",
-          "@graph": [
-            {
-              "@type": "WebSite",
-              "@id": "https://example.com/#website",
-              "url": "https://example.com",
-              "name": "Nutri",
-              "description": "Regista refeições, acompanha macros e recebe recomendações personalizadas com IA.",
-              "potentialAction": {
-                "@type": "SearchAction",
-                "target": "https://example.com/?s={search_term_string}",
-                "query-input": "required name=search_term_string"
-              }
-            },
-            {
-              "@type": "Organization",
-              "@id": "https://example.com/#organization",
-              "name": "Nutri",
-              "url": "https://example.com",
-              "contactPoint": [{
-                "@type": "ContactPoint",
-                "email": "suporte@nutriai.pt",
-                "contactType": "customer support",
-                "availableLanguage": ["Portuguese", "English"]
-              }]
-            },
-            {
-              "@type": "WebPage",
-              "@id": "https://example.com/#webpage",
-              "url": "https://example.com",
-              "name": "Nutri — Alimentação Inteligente",
-              "isPartOf": { "@id": "https://example.com/#website" }
-            }
-          ]
-        }) }}
+        dangerouslySetInnerHTML={{ __html: homeJsonLd }}
       />
     </div>
   );
